@@ -5,8 +5,16 @@ export default{
 </script>
 
 <template>
-  <h1>Hele</h1>
+  <div id="app">
+    <div>
+      <router-view />
+    </div>
+  </div>
 </template>
 
-<style scoped>
+<style>
+.page {
+  margin: 0;
+  padding: 0;
+}
 </style>
