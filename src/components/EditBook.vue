@@ -33,10 +33,13 @@ export default{
 
         async deleteBook(id){
             try {
-                const result = await this.bookStore.deleteBook(id);
-                alert(result);
-                if(result === "Xóa thành công"){
-                    this.$router.push({name: "listbook"});
+                const confirm = window.confirm("Bạn có muốn xóa sách?")
+                if(confirm){
+                    const result = await this.bookStore.deleteBook(id);
+                    alert(result);
+                    if(result === "Xóa thành công"){
+                        this.$router.push({name: "listbook"});
+                    }
                 }
             } catch (error) {
                 console.log(error)

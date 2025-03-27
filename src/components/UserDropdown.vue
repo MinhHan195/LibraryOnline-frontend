@@ -7,7 +7,7 @@
                 <img src="../assets/avatar_placeholder.png" alt="avatar placeholder" class="img-fluid">
             </div>
             <span v-if="!userDataCheck" class="fw-medium">Đăng nhập</span>
-            <span v-else class="fw-medium">{{ userStore.user.name }}</span>
+            <span v-else class="fw-medium">{{ userStore.user.hoten }}</span>
             <i class="fa-duotone fa-solid fa-caret-down me-1"></i>
     </div>
     <div v-if="isOpen && !userDataCheck" class="border border-secondary rounded-2 position-absolute mt-2 z-3 bg-blur" style="right: 113px;">
@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <b v-if="!userDataCheck" class="text-primary">Tên người dùng</b>
-                    <b v-else class="text-primary">{{ userStore.user.name }}</b>
+                    <b v-else class="text-primary">{{ userStore.user.hoten }}</b>
                     <p>Tài khoản</p>
                 </div>
             </div>

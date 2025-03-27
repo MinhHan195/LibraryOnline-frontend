@@ -1,41 +1,8 @@
-<template>
-    <h3 class="text-center fw-bold">ĐĂNG KÝ TÀI KHOẢN</h3>
-     <div class="mt-3">
-        <Form @submit="submit" :validation-schema="registerFormSchema">
-            <div class="form-group mb-4">
-                <label for="name">Họ và Tên</label>
-                <Field name="name" id="name" type="text" class="form-custom" v-model="userRegistrationData.name" />
-                <ErrorMessage name="name" class="error-feedback" />
-            </div>
-            <div class="form-group mb-4">
-                <label for="email">E-mail</label>
-                <Field name="email" id="email" type="email" class="form-custom" v-model="userRegistrationData.email"/>
-                <ErrorMessage name="email" class="error-feedback" />
-            </div>
-            <div class="form-group mb-4">
-                <label for="phone">Số điện thoại</label>
-                <Field name="phone" id="phone" type="text" class="form-custom" v-model="userRegistrationData.phone"/>
-                <ErrorMessage name="phone" class="error-feedback" />
-            </div>
-            <div class="form-group mb-4">
-                <label for="password">Mật khẩu</label>
-                <Field name="password" id="password" type="password" class="form-custom" v-model="userRegistrationData.password"/>
-                <ErrorMessage name="password" class="error-feedback" />
-            </div>
-            <div class="form-group mb-4">
-                <label for="confirmPassword">Xác nhận mật khẩu</label>
-                <Field name="confirmPassword" id="confirmPassword" type="password" class="form-custom" v-model="userRegistrationData.confirmPassword"/>
-                <ErrorMessage name="confirmPassword" class="error-feedback" />
-            </div>
-            <div class="form-group">
-                <button class="btn">Đăng ký</button>
-            </div>
-        </Form>
-    </div>
-    <p class="text-center mt-4">Bạn đã có tài khoản? <router-link :to="{name: 'login'}">Đăng nhập</router-link></p>
-</template>
-
 <style scoped>
+option{
+    background-color: transparent;
+    color: black !important;
+}
 label{
     margin-bottom: 3px;
 }
@@ -59,10 +26,67 @@ label{
 }
 </style>
 
+<template>
+    <h3 class="text-center fw-bold">ĐĂNG KÝ TÀI KHOẢN</h3>
+     <div class="mt-3">
+        <div style="max-height: 100%; overflow-y: auto;" >
+            <Form @submit="submit" :validation-schema="registerFormSchema">
+                <div class="form-group mb-4">
+                    <label for="hoten">Họ và Tên</label>
+                    <Field name="hoten" id="hoten" type="text" class="form-custom" v-model="userRegistrationData.hoten" />
+                    <ErrorMessage name="hoten" class="error-feedback" />
+                </div>
+                <div class="form-group mb-4">
+                    <label for="email">E-mail</label>
+                    <Field name="email" id="email" type="email" class="form-custom" v-model="userRegistrationData.email"/>
+                    <ErrorMessage name="email" class="error-feedback" />
+                </div>
+                <div class="form-group mb-4">
+                    <label for="ngaysinh">Ngày sinh</label>
+                    <Field name="ngaysinh" id="ngaysinh" type="date" class="form-custom" v-model="userRegistrationData.ngaysinh"/>
+                    <ErrorMessage name="ngaysinh" class="error-feedback" />
+                </div>
+                <div class="form-group mb-4">
+                    <label for="gioitinh">Giới tính</label>
+                    <Field as="select"  name="gioitinh" id="gioitinh" class="form-custom" v-model="userRegistrationData.gioitinh">
+                        <option class="bg-transparent" value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Khác">Khác</option>
+                    </Field>
+                    <ErrorMessage name="gioitinh" class="error-feedback" />
+                </div>
+                <div class="form-group mb-4">
+                    <label for="sodienthoai">Số điện thoại</label>
+                    <Field name="sodienthoai" id="sodienthoai" type="text" class="form-custom" v-model="userRegistrationData.sodienthoai"/>
+                    <ErrorMessage name="sodienthoai" class="error-feedback" />
+                </div>
+                <div class="form-group mb-4">
+                    <label for="diachi">Địa chỉ</label>
+                    <Field name="diachi" id="diachi" type="text" class="form-custom" v-model="userRegistrationData.diachi"/>
+                    <ErrorMessage name="diachi" class="error-feedback" />
+                </div>
+                <div class="form-group mb-4">
+                    <label for="password">Mật khẩu</label>
+                    <Field name="password" id="password" type="password" class="form-custom" v-model="userRegistrationData.password"/>
+                    <ErrorMessage name="password" class="error-feedback" />
+                </div>
+                <div class="form-group mb-4">
+                    <label for="confirmPassword">Xác nhận mật khẩu</label>
+                    <Field name="confirmPassword" id="confirmPassword" type="password" class="form-custom" v-model="userRegistrationData.confirmPassword"/>
+                    <ErrorMessage name="confirmPassword" class="error-feedback" />
+                </div>
+                <div class="form-group">
+                    <button class="btn">Đăng ký</button>
+                </div>
+            </Form>
+        </div>
+    </div>
+    <p class="text-center mt-4">Bạn đã có tài khoản? <router-link :to="{name: 'login'}">Đăng nhập</router-link></p>
+</template>
+
 <script>
 import * as yup from "yup";
 import {Form, Field, ErrorMessage} from "vee-validate";
-import { ref } from "vue";
 export default{
     components: {
         Form,
@@ -72,7 +96,7 @@ export default{
     emits: ["submit:register","submit:login","submit:email","submit:password"],
     data(){
         const registerFormSchema = yup.object().shape({
-            name: yup  
+            hoten: yup  
                 .string()
                 .required("Tên phải có giá trị")
                 .min(2, "Tên phải có ít nhất 2 kí tự")
@@ -82,15 +106,27 @@ export default{
                 .required("E-mail phải có giá trị")
                 .email("E-mail không đúng")
                 .max(50, "E-mail tối đa 50 ký tự"),
-            phone: yup
+            ngaysinh: yup
+                .date()
+                .required('Vui lòng chọn ngày')
+                .typeError('Ngày không hợp lệ'),
+            gioitinh: yup
+                .string()
+                .required("Vui lòng chọn giới tính"),
+            sodienthoai: yup
                 .string()
                 .required("Số điện thoại phải có giá trị")
                 .matches(/((09|03|07|08|05)+([0-9]{8})\b)/g, "Số điện thoại không hợp lệ."),
+            diachi: yup
+                .string()
+                .required("Vui lòng nhập địa chỉ")
+                .min(5, "Địa chỉ tối thiểu 5 ký tự")
+                .max(100, "Địa chỉ nhập tối đa 100 ký tự"),
             password: yup
                 .string()
                 .required("Mật khẩu không được trống")
                 .min(6,"Mật khẩu phải ít nhất 6 ký tự")
-                .max(30, "Mật khẩu tối đa 30 ký tự"),
+                    .max(30, "Mật khẩu tối đa 30 ký tự"),
             confirmPassword: yup
                 .string()
                 .required("Mật khẩu xác nhận không được trống")

@@ -4,7 +4,7 @@
             <div class="rounded-circle" style="height: 70px; width: 70px; overflow: hidden;">
                 <img src="../assets/avatar_placeholder.png" alt="" class="img-fluid">
             </div>
-            <p class="fw-bold mb-1 mt-1">{{ userStore.user.name }}</p>
+            <p class="fw-bold mb-1 mt-1">{{ userStore.user.hoten }}</p>
             <p class="mb-0">Chào mừng bạn trở lại</p>
         </div>
         <hr>
@@ -45,15 +45,16 @@
 
 <script>
 import { useUserStore } from '@/store/user.store';
+import { number } from 'yup';
 export default{
     data(){
         return{
             activeIndex: -1,
             menuItems: [
-                { label: "Lịch sử mượn sách", icon: "fa-solid fa-clock-rotate-left fa-lg me-2" },
+                { label: "Lịch sử mượn sách", icon: "fa-solid fa-clock-rotate-left fa-lg me-2", action: "borrowBook" },
                 { label: "Thêm mới sách", icon: "fa-solid fa-plus fa-lg me-2", action: "addBook" },
                 { label: "Quản lý sách hiện có", icon: "fa-solid fa-book fa-lg me-2", action: "listBook" },
-                { label: "Quản lý người dùng", icon: "fa-solid fa-users fa-lg me-2" }
+                { label: "Quản lý người dùng", icon: "fa-solid fa-users fa-lg me-2", action: "users" }
             ]
         }
     },
@@ -66,6 +67,12 @@ export default{
         },
         listBook(){
             this.$router.push({name:"listbook"});
+        },
+        borrowBook(){
+            this.$router.push({name:"bookborrow"});
+        },
+        users(){
+            this.$router.push({name:"users"});
         },
         setActive(index, action){
             this.activeIndex = index;

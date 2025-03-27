@@ -57,6 +57,16 @@ const routes = [
                 path: "/admin/edit/:id",
                 name: "edit",
                 component: () => import("@/components/EditBook.vue")
+            },
+            {
+                path: "/admin/bookborrow",
+                name: "bookborrow",
+                component: () => import("@/components/BookBorrowManager.vue")
+            },
+            {
+                path: "/admin/users",
+                name: "users",
+                component: () => import("@/components/UsersManager.vue")
             }
         ]
     }

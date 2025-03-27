@@ -51,7 +51,7 @@ export const useBookStore = defineStore("book",{
                 const resutl = await BookService.deleteBook(id);
                 if(resutl.message === "Xóa thành công"){
                     for(let item in this.books){
-                        if(item._id == id){
+                        if(item._id === id){
                             const index = this.books.indexOf(item);
                             this.books.splice(index,1);
                         }

@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row d-flex justify-content-center ">
                     <div class="col-5">
-                        <div class=" p-5 rounded rounded-4 overlay2 text-white" style="width: 100%; height: auto;">
+                        <div class=" p-5 rounded rounded-4 overlay2 text-white" style="width: 100%; max-height: 80vh; overflow-y: auto;">
                             <router-view 
                             @submit:register="createAccount" 
                             @submit:login="logIn" 
@@ -30,6 +30,10 @@
     padding: 0;
     background: transparent;
     backdrop-filter: blur(10px);
+}
+.overlay2::-webkit-scrollbar {
+  width: 5px;
+  background: traưnsparent; /* Làm trong suốt */
 }
 .background-custom{
     margin: 0;
@@ -65,10 +69,12 @@ export default{
         async logIn(data){
             try {
                 const message = await AuthService.logIn(data);
-                if(message.message){
+                if(message.message === "Đăng nhập thành công"){
                     this.userStore = useUserStore();
                     await this.userStore.fetchUserData();
                     this.$router.push({name:"home"});
+                }else{ 
+                    alert(message.message);
                 }
             } catch (error) {
                 console.log(error)
