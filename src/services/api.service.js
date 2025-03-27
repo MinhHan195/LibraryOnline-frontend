@@ -1,16 +1,20 @@
 import axios from "axios";
 
-const commonConfig = {
-    headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-    },
-};
-
 export default (baseURL) => {
-    return axios.create({
+    const instance = axios.create({
         baseURL,
-        ...commonConfig,
         withCredentials: true
     });
+
+    instance.interceptors.request.use((config)=> {
+        if(config.data instanceof FormData) {
+            delete config.headers["Content-Type"];
+        } else {
+            config.headers["Content-Type"] = "application/json"
+            config.headers["Accept"] = "application/json";
+        }
+        return config;
+    });
+
+    return instance;
 };

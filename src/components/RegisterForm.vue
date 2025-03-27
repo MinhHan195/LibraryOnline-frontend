@@ -1,5 +1,6 @@
 <template>
-     <div class="justify-content-center mt-5">
+    <h3 class="text-center fw-bold">ĐĂNG KÝ TÀI KHOẢN</h3>
+     <div class="mt-3">
         <Form @submit="submit" :validation-schema="registerFormSchema">
             <div class="form-group mb-4">
                 <label for="name">Họ và Tên</label>
@@ -27,10 +28,11 @@
                 <ErrorMessage name="confirmPassword" class="error-feedback" />
             </div>
             <div class="form-group">
-                <button class="btn">Lưu</button>
+                <button class="btn">Đăng ký</button>
             </div>
         </Form>
     </div>
+    <p class="text-center mt-4">Bạn đã có tài khoản? <router-link :to="{name: 'login'}">Đăng nhập</router-link></p>
 </template>
 
 <style scoped>
@@ -67,7 +69,7 @@ export default{
         Field,
         ErrorMessage,
     },
-    emits: ["submit:register"],
+    emits: ["submit:register","submit:login","submit:email","submit:password"],
     data(){
         const registerFormSchema = yup.object().shape({
             name: yup  
