@@ -44,6 +44,10 @@
                             <td><i class="fa-solid fa-paper-plane fa-xl" style="color: #03abfd;"></i></td>
                             <td><span class="ms-1 fw-medium">Lịch sử mượn sách</span></td>
                         </tr>
+                        <tr class="custom-button" v-if="userStore.user.role==='admin'" @click="admin">
+                            <td><i class="fa-solid fa-user-tie fa-xl" style="color: #03abfd;"></i></td>
+                            <td><span class="ms-1 fw-medium">Quản lý</span></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -108,6 +112,9 @@ export default{
         logout(){
             this.userStore.$reset();
             this.$router.push({name:"home"});
+        },
+        admin(){
+            this.$router.push({name:"bookborrow"})
         }
     }
 }

@@ -5,6 +5,15 @@ class OrderService{
         this.api = createApiClient(baseURL);
     }
 
+    async createOrder(id) {
+        document.body.style.cursor = "wait";
+        try{
+            return (await this.api.get(`/create/${id}`)).data;
+        }finally{
+            document.body.style.cursor = "default";
+        }
+    }
+
     async getOrder() {
         document.body.style.cursor = "wait";
         try{

@@ -54,7 +54,8 @@ export default{
                 { label: "Lịch sử mượn sách", icon: "fa-solid fa-clock-rotate-left fa-lg me-2", action: "borrowBook" },
                 { label: "Thêm mới sách", icon: "fa-solid fa-plus fa-lg me-2", action: "addBook" },
                 { label: "Quản lý sách hiện có", icon: "fa-solid fa-book fa-lg me-2", action: "listBook" },
-                { label: "Quản lý người dùng", icon: "fa-solid fa-users fa-lg me-2", action: "users" }
+                { label: "Quản lý người dùng", icon: "fa-solid fa-users fa-lg me-2", action: "users" },
+                { label: "Trang chủ", icon: "fa-solid fa-house fa-lg me-2", action: "home" }
             ]
         }
     },
@@ -73,6 +74,9 @@ export default{
         },
         users(){
             this.$router.push({name:"users"});
+        },
+        home(){
+            this.$router.push({name: "home"})
         },
         setActive(index, action){
             this.activeIndex = index;

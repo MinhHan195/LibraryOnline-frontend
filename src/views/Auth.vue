@@ -68,13 +68,17 @@ export default{
         },
         async logIn(data){
             try {
-                const message = await AuthService.logIn(data);
-                if(message.message === "Đăng nhập thành công"){
+                const result = await AuthService.logIn(data);
+                if(result.message === "Đăng nhập thành công"){
                     this.userStore = useUserStore();
                     await this.userStore.fetchUserData();
-                    this.$router.push({name:"home"});
+                    if(result.role==="user"){
+                        this.$router.push({name:"home"});
+                    }else if(result.role==="admin"){
+                        this.$router.push({name:"bookborrow"});
+                    }
                 }else{ 
-                    alert(message.message);
+                    alert(result.message);
                 }
             } catch (error) {
                 console.log(error)

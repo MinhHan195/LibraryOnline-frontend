@@ -39,6 +39,9 @@ import { useUserStore } from "@/store/user.store";
 export default{
     created() {
         this.userStore = useUserStore()
+        if(this.userStore.user.role!=="admin"){
+            this.$router.push({name:"home"});
+        }
     },
     components: {
         SideBarAdmin,

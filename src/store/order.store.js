@@ -8,6 +8,14 @@ export const useOrderStore = defineStore("order",{
         }
     },
     actions: {
+        async createOrder(id){
+            try {
+                const result = await OrderService.createOrder(id);
+                return result.message;
+            } catch (error) {
+                console.log("Error create orders data: ",error);
+            }  
+        },
         async fetchOrderData() {
             try {
                 this.orders = await OrderService.getOrder();
