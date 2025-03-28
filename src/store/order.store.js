@@ -4,7 +4,8 @@ import OrderService from "@/services/order.service";
 export const useOrderStore = defineStore("order",{
     state: () => {
         return {
-            orders: []
+            orders: [],
+            ordersUser: []
         }
     },
     actions: {
@@ -50,6 +51,31 @@ export const useOrderStore = defineStore("order",{
                 
             } catch (error) {
                 console.log("Error change status data: ",error);
+            }
+        },
+
+        async fetchOrdersByUserId(userId){
+            try {
+                this.ordersUser = await OrderService.fetchOrdersByUserId(userId);
+            } catch (error) {
+                console.log("Error get user's orders data: ",error);
+            }
+        },
+        async deleteOrder(id){
+            try {
+                const result = await OrderService.deleteOrder(id);
+                if(result.message === "Xóa thành công"){
+                    for(let item in this.ordersUser){
+                        if(item._id === id){
+                            console.log(item)
+                            const index = this.ordersUser.indexOf(item);
+                            this.ordersUser.splice(index,1);
+                        }   
+                    }
+                }
+                return result.message;
+            } catch (error) {
+                console.log("Error delete orders data: ",error);
             }
         }
     },

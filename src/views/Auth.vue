@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row d-flex justify-content-center ">
                     <div class="col-5">
-                        <div class=" p-5 rounded rounded-4 overlay2 text-white" style="width: 100%; max-height: 80vh; overflow-y: auto;">
+                        <div class=" p-5 rounded rounded-4 overlay2 text-white" style="width: 100%; max-height: 80vh; overflow-y: auto; color: white !important;">
                             <router-view 
                             @submit:register="createAccount" 
                             @submit:login="logIn" 

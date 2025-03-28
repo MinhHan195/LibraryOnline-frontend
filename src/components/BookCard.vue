@@ -16,8 +16,12 @@
                     <span class="fw-light total">Còn {{ book.soquyenconlai }} quyển</span>
                 </div>
             </div>
-            <div class="overlay d-flex justify-content-center align-items-center">
-                <button type="button" class="btn btn-info" @click="createOrder(book._id)">Đăng ký</button>
+            <div v-if="userStore.isLogged" class="overlay d-flex justify-content-center align-items-center">
+                <button type="button" class="btn btn-info" @click="createOrder(book._id)">Đăng ký mượn</button>
+            </div>
+            <div v-else class="overlay d-flex flex-column justify-content-center align-items-center">
+                <button type="button" class="btn btn-primary mb-2" @click="goToLogin">Đăng nhập</button>
+                <button type="button" class="btn btn-secondary mt-2" @click="goToSignUp">Đăng ký</button>
             </div>
         </div>
     </div>
@@ -48,13 +52,17 @@
 
 .btn{
 height: 40px;
-width: 90px;
+width: auto;
 color: white;
 }
 </style>
 
 <script>
+import { useUserStore } from '@/store/user.store';
 export default{
+    created(){
+        this.userStore = useUserStore()
+    },
     props:{
         book: {type: Object, default: {}}
     },
@@ -62,6 +70,12 @@ export default{
     methods: {
         createOrder(id) {
             this.$emit("registerOrder", id);
+        },
+        goToLogin(){
+            this.$router.push({name: "login"})
+        },
+        goToSignUp(){
+            this.$router.push({name: "register"})
         }
     }
 }

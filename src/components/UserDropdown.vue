@@ -22,7 +22,7 @@
     </div>
     <div v-if="isOpen && userDataCheck" class="border border-secondary rounded-2 position-absolute mt-2 z-3 bg-blur" style="right: 113px;">
         <div class="p-3">
-            <div class="d-flex column-gap-4 custom-button">
+            <div class="d-flex column-gap-4 custom-button" @click="user">
                 <div class="rounded-circle " style="height: 50px; width: 50px; overflow: hidden;">
                     <img src="../assets/avatar_placeholder.png" alt="avatar placeholder" class="img-fluid">
                 </div>
@@ -40,7 +40,7 @@
                             <td><i class="fa-solid fa-heart fa-xl" style="color: #03abfd;"></i></td>
                             <td><span class="ms-1 fw-medium">Sách đã lưu</span></td>
                         </tr>
-                        <tr class="custom-button">
+                        <tr class="custom-button" @click="history">
                             <td><i class="fa-solid fa-paper-plane fa-xl" style="color: #03abfd;"></i></td>
                             <td><span class="ms-1 fw-medium">Lịch sử mượn sách</span></td>
                         </tr>
@@ -115,6 +115,12 @@ export default{
         },
         admin(){
             this.$router.push({name:"bookborrow"})
+        },
+        user(){
+            this.$router.push({name:"user"})
+        },
+        history(){
+            this.$router.push({name: "history"})
         }
     }
 }

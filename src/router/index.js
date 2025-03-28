@@ -69,6 +69,23 @@ const routes = [
                 component: () => import("@/components/UsersManager.vue")
             }
         ]
+    },
+    {
+        path: "/user",
+        name: "user",
+        component: () => import("@/views/User.vue"),
+        children: [
+            {
+                path: "/user/information",
+                name: "userinf",
+                component: () => import("@/components/UserInf.vue")
+            },
+            {
+                path: "/user/history",
+                name: "history",
+                component: () => import("@/components/History.vue")
+            }
+        ]
     }
 ]
 

@@ -30,6 +30,24 @@ class OrderService{
             document.body.style.cursor = "default";
         }
     }
+
+    async fetchOrdersByUserId(userId){
+        document.body.style.cursor = "wait";
+        try{
+            return (await this.api.get(`/${userId}`)).data;
+        }finally{
+            document.body.style.cursor = "default";
+        }
+    }
+
+    async deleteOrder(id){
+        document.body.style.cursor = "wait";
+        try{
+            return (await this.api.delete(`/${id}`)).data;
+        }finally{
+            document.body.style.cursor = "default";
+        }
+    }
 }
 
 export default new OrderService()
