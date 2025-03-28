@@ -117,7 +117,7 @@ export default{
             this.$router.push({name:"bookborrow"})
         },
         user(){
-            this.$router.push({name:"user"})
+            this.$router.push({name:"userinf"})
         },
         history(){
             this.$router.push({name: "history"})

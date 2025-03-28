@@ -17,7 +17,7 @@ label{
 }
 .form-custom{
     width: 100%;
-    color: white;
+    /* color: white; */
     background: transparent;
     border: none; 
     border-bottom: 3px solid white; 
